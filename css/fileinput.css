@@ -207,7 +207,15 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     padding: 6px;
-    float: left;
+    /*
+     * This float is needed for proper layout when using multi-select of images and multiple
+     * previews are required, but ... as a side effect it breaks things when loading images
+     * that do not have a "default size". That's an image for many svg image in which the embedded
+     * width/height attributes are option and default to auto. When inside a float, auto becomes
+     * zero, so the container for the svg with 0x0 and no preview results.  Without the float
+     * the container expands to the max size possible, which is what we want.
+     * float: left;
+     */
     text-align: center;
 }
 
